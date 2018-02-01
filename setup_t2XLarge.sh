@@ -15,7 +15,7 @@ chmod 400 ~/.ssh/aws-key.pem
 
 export ami="ami-f8fd5998" # Oregon
 
-export instanceId=`aws ec2 run-instances --image-id $ami --count 1 --instance-type t2.xlarge --key-name aws-key-$name --security-group-ids $securityGroupId --subnet-id $subnetId --associate-public-ip-address --block-device-mapping "[ { \"DeviceName\": \"/dev/sda1\", \"Ebs\": { \"VolumeSize\": 30, \"VolumeType\": \"gp2\" } } ]" --query 'Instances[0].InstanceId' --output text`
+export instanceId=`aws ec2 run-instances --image-id $ami --count 1 --instance-type t2.micro --key-name aws-key-$name --security-group-ids $securityGroupId --subnet-id $subnetId --associate-public-ip-address --block-device-mapping "[ { \"DeviceName\": \"/dev/sda1\", \"Ebs\": { \"VolumeSize\": 30, \"VolumeType\": \"gp2\" } } ]" --query 'Instances[0].InstanceId' --output text`
 #export instanceId=`aws ec2 run-instances --image-id ami-f8fd5998 --count 1 --instance-type t2.micro --key-name aws-key --security-group-ids $securityGroupId --subnet-id $subnetId --associate-public-ip-address --block-device-mapping "[ { \"DeviceName\": \"/dev/sda1\", \"Ebs\": { \"VolumeSize\": 128, \"VolumeType\": \"gp2\" } } ]" --query 'Instances[0].InstanceId' --output text`
 export allocAddr=`aws ec2 allocate-address --domain vpc --query 'AllocationId' --output text`
 
